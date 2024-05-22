@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-image: url(textures/menu/dirt.png);
+    image-rendering: pixelated;
+    background-size: 7%;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Set the height of the body to 100% of the viewport height */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+img {
+    width: 50%;
+    margin: 2%;
+}
+
+a {
+    display: flex;
+    margin: 0.5%;
+    width: 30%;
+    height: 10%; /* This will now work as expected */
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    border-radius: 100vh;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 3vh;
+}
+
+@media (max-width: 400px) {
+    body {
+        background-size: 20%;
+    }
+
+    a {
+        width: 50%;
+        height: 20%;
+    }
+
+    img {
+        width: 90%;
+    }
+}
