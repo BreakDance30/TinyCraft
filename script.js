@@ -52,13 +52,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Function to handle block click for placing blocks
+    // Function to handle block click for placing and destroying blocks
     function handleBlockClick(event) {
         const block = event.target;
         if (block.classList.contains('block')) {
-            block.style.backgroundImage = `url(${blockTextures[currentBlockIndex]})`;
+            if (block.style.backgroundImage) {
+                block.style.backgroundImage = ''; // Clear background image (destroy block)
+            } else {
+                block.style.backgroundImage = `url(${blockTextures[currentBlockIndex]})`; // Place block
+            }
         }
     }
+
 
 
     // Function to switch block texture
