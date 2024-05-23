@@ -49,7 +49,7 @@ body {
 }
 
 /* Media query for smaller screens */
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 300px) {
 
     /* CSS to display block selector for smaller screens */
     .block-selector {
