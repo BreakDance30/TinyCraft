@@ -9,20 +9,25 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
 }
 
 .layer {
     display: flex;
     flex-direction: row;
-    min-width: fit-content; /* Ensure the layer is at least as wide as its content */
+    min-width: fit-content;
+    /* Ensure the layer is at least as wide as its content */
 }
 
 .block-buttons {
     position: fixed;
-    top: 20px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
-    z-index: 999; /* Ensure the buttons are on top of the blocks */
+    top: 20px;
+    /* Adjust as needed */
+    right: 20px;
+    /* Adjust as needed */
+    z-index: 999;
+    /* Ensure the buttons are on top of the blocks */
 }
 
 
@@ -38,9 +43,36 @@ body {
     background-image: url('textures/grass.png');
 }
 
-@media only screen and (max-width: 768px) {
+/* CSS for block buttons and arrow buttons */
+.block-selector {
+    display: none;
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 400px) {
+
+    /* CSS to display block selector for smaller screens */
+    .block-selector {
+        display: block;
+    }
+
+    .block-button {
+        display: none;
+    }
+
     .block {
-        width: 32px; /* Adjust the width for smaller screens */
-        height: 32px; /* Adjust the height for smaller screens */
+        width: 54px;
+        /* Adjust the width for smaller screens */
+        height: 54px;
+        /* Adjust the height for smaller screens */
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .block {
+        width: 8vh;
+        /* Adjust the width for smaller screens */
+        height: 8vh;
+        /* Adjust the height for smaller screens */
     }
 }

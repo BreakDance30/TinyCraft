@@ -9,6 +9,7 @@ body {
     height: 100vh; /* Set the height of the body to 100% of the viewport height */
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
+    color: white;
 }
 
 img {
@@ -17,10 +18,15 @@ img {
 }
 
 a {
+    color: white;
+    font-size: 2vh;
+}
+
+.button {
     display: flex;
     margin: 0.5%;
     width: 30%;
-    height: 10%; /* This will now work as expected */
+    height: 10%;
     justify-content: center;
     align-items: center;
     background-color: grey;
