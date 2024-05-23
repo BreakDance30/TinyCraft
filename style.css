@@ -32,11 +32,16 @@ body {
 
 
 .block {
-    width: 16vh;
-    height: 16vh;
+    width: 112px;
+    height: 112px;
     background-repeat: no-repeat;
     background-size: cover;
     image-rendering: pixelated;
+}
+
+.carpet {
+    height: 7px;
+    background-repeat: repeat-y;
 }
 
 .grass_block {

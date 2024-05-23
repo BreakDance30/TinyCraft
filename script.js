@@ -1,8 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
     const world = document.querySelector('.world');
     const blockTabs = [
-        ['/textures/blocks/grass.png', '/textures/blocks/dirt.png', '/textures/blocks/stone.png', '/textures/blocks/cobblestone.png', '/textures/blocks/oak_log.png', '/textures/blocks/oak_leaves.png', '/textures/blocks/oak_planks.png', '/textures/blocks/oak_sapling.png'],
-        ['/textures/blocks/oak_log.png', '/textures/blocks/oak_leaves.png', '/textures/blocks/oak_planks.png', '/textures/blocks/oak_trapdoor.png', '/textures/blocks/oak_sapling.png'],
+        ['/textures/blocks/grass.png', '/textures/blocks/dirt.png', '/textures/blocks/stone.png', '/textures/blocks/cobblestone.png', '/textures/blocks/wood/oak_log.png', '/textures/blocks/wood/oak_leaves.png', '/textures/blocks/wood/oak_planks.png', '/textures/blocks/obsidian.png', '/textures/blocks/crying_obsidian.png', '/textures/blocks/wood/oak_sapling.png'],
+        ['/textures/blocks/grass.png', '/textures/blocks/dirt.png', '/textures/blocks/dirt_path.png', '/textures/blocks/coarse_dirt.png', '/textures/blocks/rooted_dirt.png'],
+        ['/textures/blocks/wood/acacia_log.png', '/textures/blocks/wood/acacia_planks.png', '/textures/blocks/wood/acacia_sapling.png'],
+        ['/textures/blocks/wood/bamboo_planks.png'],
+        ['/textures/blocks/wood/birch_log.png', '/textures/blocks/wood/birch_planks.png', '/textures/blocks/wood/birch_sapling.png'],
+        ['/textures/blocks/wood/cherry_log.png', '/textures/blocks/wood/cherry_planks.png', '/textures/blocks/wood/cherry_sapling.png'],
+        ['/textures/blocks/wood/crimson_planks.png', '/textures/blocks/wood/warped_planks.png'],
+        ['/textures/blocks/wood/dark_oak_log.png', '/textures/blocks/wood/dark_oak_planks.png', '/textures/blocks/wood/dark_oak_sapling.png'],
+        ['/textures/blocks/wood/jungle_log.png', '/textures/blocks/wood/jungle_planks.png', '/textures/blocks/wood/jungle_sapling.png'],
+        ['/textures/blocks/wood/mangrove_log.png', '/textures/blocks/wood/mangrove_planks.png'],
+        ['/textures/blocks/wood/oak_log.png', '/textures/blocks/wood/stripped_oak_log.png', '/textures/blocks/wood/oak_leaves.png', '/textures/blocks/wood/oak_planks.png', '/textures/blocks/wood/oak_trapdoor.png', '/textures/blocks/wood/oak_sapling.png'],
+        ['/textures/blocks/wood/spruce_log.png', '/textures/blocks/wood/spruce_planks.png', '/textures/blocks/wood/spruce_sapling.png'],
+        ['/textures/blocks/ores/coal_ore.png', '/textures/blocks/ores/copper_ore.png', '/textures/blocks/ores/iron_ore.png', '/textures/blocks/ores/lapis_ore.png', '/textures/blocks/ores/redstone_ore.png', '/textures/blocks/ores/gold_ore.png', '/textures/blocks/ores/diamond_ore.png'],
         ['/textures/blocks/glass/glass.png', '/textures/blocks/glass/black_stained_glass.png', '/textures/blocks/glass/blue_stained_glass.png', '/textures/blocks/glass/brown_stained_glass.png', '/textures/blocks/glass/cyan_stained_glass.png', '/textures/blocks/glass/gray_stained_glass.png', '/textures/blocks/glass/green_stained_glass.png', '/textures/blocks/glass/light_blue_stained_glass.png', '/textures/blocks/glass/light_gray_stained_glass.png'],
         ['/textures/blocks/glass/lime_stained_glass.png', '/textures/blocks/glass/magenta_stained_glass.png', '/textures/blocks/glass/orange_stained_glass.png', '/textures/blocks/glass/pink_stained_glass.png', '/textures/blocks/glass/purple_stained_glass.png', '/textures/blocks/glass/red_stained_glass.png', '/textures/blocks/glass/white_stained_glass.png', '/textures/blocks/glass/yellow_stained_glass.png', '/textures/blocks/glass/tinted_glass.png'],
         ['/textures/blocks/wool/white_wool.png', '/textures/blocks/wool/orange_wool.png', '/textures/blocks/wool/magenta_wool.png', '/textures/blocks/wool/light_blue_wool.png', '/textures/blocks/wool/yellow_wool.png', '/textures/blocks/wool/lime_wool.png', '/textures/blocks/wool/pink_wool.png', '/textures/blocks/wool/gray_wool.png'],
@@ -12,8 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
         ['/textures/blocks/terracotta/white_glazed_terracotta.png', '/textures/blocks/terracotta/orange_glazed_terracotta.png', '/textures/blocks/terracotta/magenta_glazed_terracotta.png', '/textures/blocks/terracotta/light_blue_glazed_terracotta.png', '/textures/blocks/terracotta/yellow_glazed_terracotta.png', '/textures/blocks/terracotta/lime_glazed_terracotta.png', '/textures/blocks/terracotta/pink_glazed_terracotta.png', '/textures/blocks/terracotta/gray_glazed_terracotta.png'],
         ['/textures/blocks/terracotta/light_gray_glazed_terracotta.png', '/textures/blocks/terracotta/cyan_glazed_terracotta.png', '/textures/blocks/terracotta/purple_glazed_terracotta.png', '/textures/blocks/terracotta/blue_glazed_terracotta.png', '/textures/blocks/terracotta/brown_glazed_terracotta.png', '/textures/blocks/terracotta/green_glazed_terracotta.png', '/textures/blocks/terracotta/red_glazed_terracotta.png', '/textures/blocks/terracotta/black_glazed_terracotta.png']
     ];
+
     let currentTabIndex = 0;
     let currentBlockIndex = 0;
+    let currentCarpetIndex = 0;
 
     // Function to create a block
     function createBlock(texture) {
