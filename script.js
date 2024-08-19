@@ -21,7 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
         ['/textures/blocks/terracotta/white_terracotta.png', '/textures/blocks/terracotta/orange_terracotta.png', '/textures/blocks/terracotta/magenta_terracotta.png', '/textures/blocks/terracotta/light_blue_terracotta.png', '/textures/blocks/terracotta/yellow_terracotta.png', '/textures/blocks/terracotta/lime_terracotta.png', '/textures/blocks/terracotta/pink_terracotta.png', '/textures/blocks/terracotta/gray_terracotta.png'],
         ['/textures/blocks/terracotta/light_gray_terracotta.png', '/textures/blocks/terracotta/cyan_terracotta.png', '/textures/blocks/terracotta/purple_terracotta.png', '/textures/blocks/terracotta/blue_terracotta.png', '/textures/blocks/terracotta/brown_terracotta.png', '/textures/blocks/terracotta/green_terracotta.png', '/textures/blocks/terracotta/red_terracotta.png', '/textures/blocks/terracotta/black_terracotta.png'],
         ['/textures/blocks/terracotta/white_glazed_terracotta.png', '/textures/blocks/terracotta/orange_glazed_terracotta.png', '/textures/blocks/terracotta/magenta_glazed_terracotta.png', '/textures/blocks/terracotta/light_blue_glazed_terracotta.png', '/textures/blocks/terracotta/yellow_glazed_terracotta.png', '/textures/blocks/terracotta/lime_glazed_terracotta.png', '/textures/blocks/terracotta/pink_glazed_terracotta.png', '/textures/blocks/terracotta/gray_glazed_terracotta.png'],
-        ['/textures/blocks/terracotta/light_gray_glazed_terracotta.png', '/textures/blocks/terracotta/cyan_glazed_terracotta.png', '/textures/blocks/terracotta/purple_glazed_terracotta.png', '/textures/blocks/terracotta/blue_glazed_terracotta.png', '/textures/blocks/terracotta/brown_glazed_terracotta.png', '/textures/blocks/terracotta/green_glazed_terracotta.png', '/textures/blocks/terracotta/red_glazed_terracotta.png', '/textures/blocks/terracotta/black_glazed_terracotta.png']
+        ['/textures/blocks/terracotta/light_gray_glazed_terracotta.png', '/textures/blocks/terracotta/cyan_glazed_terracotta.png', '/textures/blocks/terracotta/purple_glazed_terracotta.png', '/textures/blocks/terracotta/blue_glazed_terracotta.png', '/textures/blocks/terracotta/brown_glazed_terracotta.png', '/textures/blocks/terracotta/green_glazed_terracotta.png', '/textures/blocks/terracotta/red_glazed_terracotta.png', '/textures/blocks/terracotta/black_glazed_terracotta.png'],
+        ['/textures/blocks/concrete/white_concrete.png', '/textures/blocks/concrete/orange_concrete.png', '/textures/blocks/concrete/magenta_concrete.png', '/textures/blocks/concrete/light_blue_concrete.png', '/textures/blocks/concrete/yellow_concrete.png', '/textures/blocks/concrete/lime_concrete.png', '/textures/blocks/concrete/pink_concrete.png', '/textures/blocks/concrete/gray_concrete.png'],
+        ['/textures/blocks/concrete/light_gray_concrete.png', '/textures/blocks/concrete/cyan_concrete.png', '/textures/blocks/concrete/purple_concrete.png', '/textures/blocks/concrete/blue_concrete.png', '/textures/blocks/concrete/brown_concrete.png', '/textures/blocks/concrete/green_concrete.png', '/textures/blocks/concrete/red_concrete.png', '/textures/blocks/concrete/black_concrete.png']
+        
     ];
 
     let currentTabIndex = 0;
@@ -29,11 +32,18 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentCarpetIndex = 0;
 
     // Function to create a block
-    function createBlock(texture) {
+    function createBlock(texture, id) {
         const block = document.createElement('div');
         block.classList.add('block');
         block.style.backgroundImage = `url(${texture})`;
         return block;
+    }
+    
+
+    // Simple random noise function for cave generation
+    function noise(x, y) {
+        // Generate a pseudo-random value based on x and y
+        return Math.random() * (Math.sin(x * 0.1) + Math.cos(y * 0.1));
     }
 
     // Function to create and fill the world with blocks
@@ -47,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
             world.appendChild(airLayer);
         }
 
-        // Create layers of grass, dirt, and stone
+        // Create layers of grass, dirt, and stone with cave generation
         for (let i = 0; i < 16; i++) { // Create 16 layers
             const layer = document.createElement('div');
             layer.classList.add('layer');
@@ -59,7 +69,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else if (i < 4) {
                     layer.appendChild(createBlock(blockTabs[currentTabIndex][1])); // Dirt texture
                 } else {
-                    layer.appendChild(createBlock(blockTabs[currentTabIndex][2])); // Stone texture
+                    // Cave generation logic
+                    let isCave = noise(i, j) > 0.5; // Adjust the threshold for cave density
+                    if (isCave) {
+                        layer.appendChild(createBlock('')); // Air texture (cave)
+                    } else {
+                        layer.appendChild(createBlock(blockTabs[currentTabIndex][2])); // Stone texture
+                    }
                 }
             }
             world.appendChild(layer);
@@ -136,10 +152,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(selectorButton);
     }
 
-    // Call createBlockSelector function to generate block selector for both larger and smaller screens
-    createBlockSelector();
-
-
     // Function to create arrow button for changing block tab
     function createArrowButton(direction) {
         const arrowButton = document.createElement('button');
@@ -173,12 +185,13 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(arrowButton);
     }
 
+    // Call createBlockSelector function to generate block selector for both larger and smaller screens
+    createBlockSelector();
+
     // Call createArrowButton function to generate arrow buttons for both directions
     createArrowButton('left');
 
-
-
-    // Call createWorld function to generate the world
+    // Call createWorld function to generate the world with caves
     createWorld();
 
     // Add event listener for block clicking

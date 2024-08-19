@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw6q2q20ob4jb"]
+
+[ext_resource type="Texture2D" uid="uid://ktf1210u00gw" path="res://steve.png" id="1_h2re6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nyti"]
+size = Vector2(26, 26)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_6nyti")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_h2re6")

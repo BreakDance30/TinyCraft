@@ -1,8 +1,51 @@
 body {
     display: flex;
-    background-color: #b9d2fd;
     margin: 0;
     image-rendering: pixelated;
+    position: relative;
+    background: linear-gradient(0deg, rgba(61,61,61,1) 0%, rgba(61,61,61,1) 50%, #78A7FF 50%, #78A7FF 100%);
+    background-size: 400% 400%;
+    animation: gradientAnimation 600s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background: linear-gradient(0deg, rgba(61,61,61,1) 0%, rgba(61,61,61,1) 50%, #78A7FF 50%, #78A7FF 100%);
+    }
+    20% {
+        background: linear-gradient(0deg, rgba(61,61,61,1) 0%, rgba(61,61,61,1) 50%, #ce8452 50%, #6d7cae 100%);
+    }
+    40% {
+        background: linear-gradient(0deg, rgba(61,61,61,1) 0%, rgba(61,61,61,1) 50%, #ca5c39 50%, #4e5270 100%);
+    }
+    60% {
+        background: linear-gradient(0deg, rgba(61,61,61,1) 0%, rgba(61,61,61,1) 50%, #0a0c14 50%, #0a0c14 100%);
+    }
+    80% {
+        background: linear-gradient(0deg, rgba(61,61,61,1) 0%, rgba(61,61,61,1) 50%, #ca5c39 50%, #4e5270 100%);
+    }
+    100% {
+        background: linear-gradient(0deg, rgba(61,61,61,1) 0%, rgba(61,61,61,1) 50%, #ce8452 50%, #6d7cae 100%);
+    }
+}
+
+iframe {
+    position: absolute; /* Change to fixed for consistent behavior */
+    width: 1300px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.iframe-container {
+    margin-top: 576px;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
 }
 
 .world {
@@ -11,6 +54,7 @@ body {
     flex-direction: column;
     overflow-x: auto;
     /* Enable horizontal scrolling */
+    z-index: 0;
 }
 
 .layer {
@@ -37,6 +81,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     image-rendering: pixelated;
+    z-index: 0;
 }
 
 .carpet {
@@ -64,20 +109,32 @@ body {
     .block-button {
         display: none;
     }
-
+    /*
     .block {
         width: 54px;
-        /* Adjust the width for smaller screens */
         height: 54px;
-        /* Adjust the height for smaller screens */
     }
+
+    .iframe-container {
+        margin-top: 1986px;
+        margin-top: 0;
+    } */
+    
 }
 
 @media only screen and (max-width: 600px) {
     .block {
-        width: 8vh;
+        width: 70px;
         /* Adjust the width for smaller screens */
-        height: 8vh;
+        height: 70px;
         /* Adjust the height for smaller screens */
+    }
+
+    iframe {
+        width: 900px;
+    }
+
+    .iframe-container {
+        margin-top: 358px;
     }
 }
